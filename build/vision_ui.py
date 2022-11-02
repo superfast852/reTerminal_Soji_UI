@@ -7,10 +7,9 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 from pathlib import Path
 import tk_tools
 from sys import exit
-
-# from tkinter import *
+import atexit
+from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
 
 
 ASSETS_PATH = Path(r"./assets/frame0")
@@ -212,9 +211,21 @@ canvas = base
 
 
 # --------------------------------------TAB CODE---------------------------------------------------------------------- #
-
+import cv2
+from PIL import ImageTk, Image as Img
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 asdf = 0
+img_size = (1184, 624)
+label = Label(window)
+label.place(x=95, y=95)
+
+
+def img_tk(cap):
+    _, frame = cap.read()
+    img = ImageTk.PhotoImage(Img.fromarray(cv2.cvtColor(cv2.resize(frame, (1184, 624)), cv2.COLOR_BGR2RGB)))
+    label.imgtk = img
+    label.configure(image=img)
 
 
 def abstract_plot():
@@ -229,11 +240,17 @@ def abstract_plot():
 
 
 def updater():
+    img_tk(cap)
     if plot_enable:
         abstract_plot()
     window.after(100, updater)
 
 
+def exit_handle():
+    cap.release()
+
+
+atexit.register(exit_handle)
 updater()
 
 window.resizable(False, False)
