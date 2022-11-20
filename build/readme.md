@@ -2,6 +2,7 @@
 ## Progress:
 - 12/11/2022: Made this file, fixed switch bug, fixed double cleanup bug, added frame_switch, added plotting
 - 14/11/2022: Added Terminal Window. Found some bugs
+- 19/11/2022: Added Fullscreen
 
 
 ## TODO:
@@ -41,4 +42,6 @@
 
 ## Bug Bounty
 ***
-* Capture not deleted and stays after exiting.
+* Plot window not deleted
+  - Possible Problem: Plotting Multiple windows.
+  - Possible Solution: Switch to MPL_Animation

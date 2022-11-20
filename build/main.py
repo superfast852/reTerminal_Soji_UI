@@ -39,6 +39,7 @@ page = {2: {},
 
 # Building Blocks
 window = Tk()
+window.attributes("-fullscreen", True)
 cap = fast_ocv.WebcamVideoStream(src=0).start()
 
 window.geometry("1280x720")
