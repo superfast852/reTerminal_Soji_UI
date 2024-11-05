@@ -239,7 +239,7 @@ def b5_updater():  # Telemetry window
             y.pop(0)
         asdf = (asdf+1) % 100  # Sawtooth loopback
         plot_box_1(range(len(y)), y)
-        current_after = window.after(1, b5_updater)  # TODO: This function is recursive, that's really problematic.
+        current_after = window.after(1, b5_updater)
     else:  # The closer.
         window.after_cancel(current_after) if current_after is not None else None
         plot_box_1(0, 0, 1)
