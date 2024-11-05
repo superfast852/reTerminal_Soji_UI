@@ -42,6 +42,4 @@
 
 ## Bug Bounty
 ***
-* Plot window not deleted
-  - Possible Problem: Plotting Multiple windows.
-  - Possible Solution: Switch to MPL_Animation
+* Done!
